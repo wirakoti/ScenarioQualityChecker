@@ -16,7 +16,9 @@ jobs:
           cache: maven
       - name: Validate, build and run tests
         run: mvn --batch-mode --update-snapshots verify
-  notify-on-failure:
+  notify:
+    needs: build
+    if: failure()
     runs-on: ubuntu-latest
     steps:
       - name: Send email notification
