@@ -9,14 +9,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.3.RELEASE</version>
-   <!--  </parent> -->
+    </parent> 
 
     <groupId>pl.put.poznan</groupId>
-    <artifactId>io-project-architecture</artifactId>
+    <artifactId>ScenarioQualityChecker</artifactId>
     <version>0.1</version>
 
 	<properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
 
     
@@ -47,6 +47,7 @@
 
 
     <build>
+	<finalName>ScenarioQualityCheckerApp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
