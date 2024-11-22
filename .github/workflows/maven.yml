@@ -27,6 +27,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Actions - build failure!
+          body: Build of ${{github.repository}} FAILED! Please check the logs!
           to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
           from: Luke Skywalker
           
