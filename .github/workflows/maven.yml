@@ -16,3 +16,18 @@ jobs:
           cache: maven
       - name: Validate, build and run tests
         run: mvn --batch-mode --update-snapshots verify
+  notify:
+    if: failure()
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3 
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          subject: Github Actions - build failure!
+          to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
+          from: Luke Skywalker
+          
+          
