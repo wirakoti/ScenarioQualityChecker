@@ -24,6 +24,8 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
           subject: Github Actions - build failure!
           to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
           from: Luke Skywalker
