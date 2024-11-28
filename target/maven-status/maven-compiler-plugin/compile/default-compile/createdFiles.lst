@@ -1,0 +1,8 @@
+pl\put\poznan\restservice\logic\RestService$ForEachStep.class
+pl\put\poznan\restservice\logic\RestService$Krok.class
+pl\put\poznan\restservice\logic\RestService$IfStep.class
+pl\put\poznan\restservice\logic\RestService$Scenariusz.class
+pl\put\poznan\restservice\logic\RestService.class
+pl\put\poznan\restservice\app\RestServiceApplication.class
+pl\put\poznan\restservice\rest\RestServiceController.class
+pl\put\poznan\restservice\logic\RestService$ElseStep.class
