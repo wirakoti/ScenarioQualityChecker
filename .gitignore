@@ -44,3 +44,11 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+
+# IntelliJ
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
