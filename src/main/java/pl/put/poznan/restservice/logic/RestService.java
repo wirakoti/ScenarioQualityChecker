@@ -37,7 +37,9 @@ public class RestService {
 
     public record Krok(String krok, IfStep ifStep, ElseStep elseStep, ForEachStep forEachStep) {
         public void accept(WizytatorScenariusza wizytatorScenariusza) {
-            wizytatorScenariusza.visit(this);
+            if(krok != null) {
+                wizytatorScenariusza.visit(this);
+            }
             if(ifStep != null) {
                 ifStep.accept(wizytatorScenariusza);
             }
@@ -98,13 +100,19 @@ public class RestService {
         }
 
         @Override
-        public void visit(IfStep ifStep) {}
+        public void visit(IfStep ifStep) {
+            ListaKrokow.add("IF: "+ifStep.warunek());
+        }
 
         @Override
-        public void visit(ElseStep elseStep) {}
+        public void visit(ElseStep elseStep) {
+            ListaKrokow.add("ELSE: ");
+        }
 
         @Override
-        public void visit(ForEachStep forEachStep) {}
+        public void visit(ForEachStep forEachStep) {
+            ListaKrokow.add("FOR EACH: "+forEachStep.element());
+        }
 
     }
 
