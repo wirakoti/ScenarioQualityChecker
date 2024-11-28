@@ -111,7 +111,7 @@ public class RestService {
 
         @Override
         public void visit(ForEachStep forEachStep) {
-            ListaKrokow.add("FOR EACH: "+forEachStep.element());
+            ListaKrokow.add("FOR EACH " + forEachStep.element() + ":");
         }
 
     }
