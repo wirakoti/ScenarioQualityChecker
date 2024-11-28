@@ -22,13 +22,14 @@ public class RestServiceController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/jsonmap", produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public String post(@RequestBody RestService.Scenariusz scen) {
 
         // log the parameters
         logger.debug(scen.tytul());
+        RestService.OdwiedzanieWizytatoraScenariusza  wizytatorScenariusza = new RestService.OdwiedzanieWizytatoraScenariusza();
 
-        return restService.PrzetwarzanieScenariusza(scen);
+        return restService.PrzetwarzanieScenariusza(scen, wizytatorScenariusza);
 
     }
 
