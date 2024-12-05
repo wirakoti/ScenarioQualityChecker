@@ -1,3 +1,14 @@
 C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\app\RestServiceApplication.java
-C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\RestService.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ElseStep.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ForEachStep.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\IfStep.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\NonKeywordCounter.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\NumberList.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Scenario.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioElement.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioProccesor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Step.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\StepCounter.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\VisitScenarioVisitor.java
 C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\rest\RestServiceController.java
