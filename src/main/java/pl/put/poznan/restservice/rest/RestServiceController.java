@@ -37,6 +37,19 @@ public class RestServiceController {
         }
     }
 
+    @RequestMapping(path = "/stepCount", method = RequestMethod.POST, produces = "application/json")
+    public String getStepCount(@RequestBody String str) throws Exception {
+        try {
+            StepCounterVisitor visitor = new StepCounterVisitor();
+            Scenario scenario = scenarioProccesor.Proccesing(str);
+            scenario.accept(visitor);
+            return "Total step count: " + visitor.getStepCount();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return e.getMessage();
+        }
+    }
+
 
 
 }
