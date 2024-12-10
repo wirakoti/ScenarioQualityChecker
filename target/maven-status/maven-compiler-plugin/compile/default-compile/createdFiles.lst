@@ -2,10 +2,10 @@ pl\put\poznan\restservice\logic\NumberList.class
 pl\put\poznan\restservice\logic\ElseStep.class
 pl\put\poznan\restservice\logic\ScenarioElement.class
 pl\put\poznan\restservice\logic\IfStep.class
-pl\put\poznan\restservice\logic\StepCounter.class
 pl\put\poznan\restservice\app\RestServiceApplication.class
 pl\put\poznan\restservice\logic\Scenario.class
 pl\put\poznan\restservice\logic\VisitScenarioVisitor.class
+pl\put\poznan\restservice\logic\StepCounterVisitor.class
 pl\put\poznan\restservice\logic\NonKeywordCounter.class
 pl\put\poznan\restservice\logic\ScenarioProccesor.class
 pl\put\poznan\restservice\rest\RestServiceController.class
