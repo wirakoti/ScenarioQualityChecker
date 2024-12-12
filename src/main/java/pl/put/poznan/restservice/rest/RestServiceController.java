@@ -37,7 +37,7 @@ public class RestServiceController {
         }
     }
 
-    @RequestMapping(path ="/keywordCounter", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
     public String getKeywordCount(@RequestBody String str) throws Exception {
         try {
             KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
@@ -65,6 +65,7 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+
 }
 
 
