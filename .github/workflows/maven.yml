@@ -35,10 +35,16 @@ jobs:
 
     steps:
       - name: Extract error summary
-        id: read-log
+        id: extract-error
         run: |
-          ERROR_SUMMARY=$(grep -i 'exception\|failure\|error' build.log | tail -n 1 || echo 'No errors found')
-          echo "ERROR_SUMMARY=$ERROR_SUMMARY" >> $GITHUB_ENV
+          if grep -q 'BUILD FAILURE' build.log; then
+            echo "FAILED_STEP=Validate, build and run tests failed" >> $GITHUB_ENV
+          elif grep -q 'Error while generating javadoc' build.log; then
+            echo "FAILED_STEP=Generate Javadoc failed" >> $GITHUB_ENV
+          elif grep -q 'artifact upload failed' build.log; then
+            echo "FAILED_STEP=Upload Javadoc or .jar file failed" >> $GITHUB_ENV
+          else
+            echo "FAILED_STEP=Unknown step failed" >> $GITHUB_ENV
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
@@ -51,9 +57,8 @@ jobs:
           body: |
             Build of ${{ github.repository }} FAILED!
 
-            **Error Summary:**
-            ${{ env.ERROR_SUMMARY }}
+            **Failed Step:** ${{ env.FAILED_STEP }}
+
+            Check the full build log for more details.
           to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
           from: IOLab Project
-          
-          
