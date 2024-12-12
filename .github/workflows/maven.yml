@@ -18,8 +18,6 @@ jobs:
         run: mvn clean package --batch-mode --update-snapshots verify
       - name: Generate Javadoc
         run: mvn javadoc:javadoc
-      - name: Verify JavaDoc Generation
-        run: ls -R target/site
       - name: Upload Javadoc
         uses: actions/upload-artifact@v4
         with:
