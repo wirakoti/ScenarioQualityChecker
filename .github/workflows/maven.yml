@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: javadoc
-          path: target/site/apidocs/ScenarioQualityCheckerApp.doc
+          path: target/site/apidocs/
       - name: Create .jar file
         uses: actions/upload-artifact@v4
         with:
