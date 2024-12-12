@@ -34,8 +34,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show build.log
-        run: cat build.log
       - name: Extract error summary
         id: read-log
         run: |
