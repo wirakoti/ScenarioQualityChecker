@@ -34,10 +34,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show build.log
+        run: cat build.log
       - name: Extract error summary
         id: read-log
         run: |
-          echo "ERROR_SUMMARY=$(grep -i 'ERROR' build.log | tail -n 1 | sed 's/\"/\\\"/g')" >> $GITHUB_ENV
+          echo "ERROR_SUMMARY=$(grep -i 'exception\|failure\|error' build.log | tail -n 1 | sed 's/\"/\\\"/g' || echo 'No errors found')" >> $GITHUB_ENV
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
