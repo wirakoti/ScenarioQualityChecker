@@ -45,6 +45,7 @@ jobs:
             echo "FAILED_STEP=Upload Javadoc or .jar file failed" >> $GITHUB_ENV
           else
             echo "FAILED_STEP=Unknown step failed" >> $GITHUB_ENV
+          fi
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
