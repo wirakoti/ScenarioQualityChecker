@@ -18,6 +18,11 @@ public class RestServiceController {
         this.scenarioProccesor = scenarioProccesor;
     }
 
+    @GetMapping()
+    public String showSite() {
+        return "Hello! This is just sample site so that it doesn't show error :D";
+    }
+
     @RequestMapping(path ="/numberedStepList", method = RequestMethod.POST, produces = "application/json")
     public String getNumberedList(@RequestBody String str) throws Exception {
         try {
@@ -32,8 +37,20 @@ public class RestServiceController {
         }
     }
 
+    @RequestMapping(path ="/keywordCounter", method = RequestMethod.POST, produces = "application/json")
+    public String getKeywordCount(@RequestBody String str) throws Exception {
+        try {
+            KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
+            Scenario scenario = scenarioProccesor.Proccesing(str);
+            scenario.accept(keywordCountVisitor);
 
-
+            return scenarioProccesor.Parsing(keywordCountVisitor);
+        }
+        catch (Exception e) {
+            logger.error(e.getMessage());
+            return e.getMessage();
+        }
+    }
 }
 
 
