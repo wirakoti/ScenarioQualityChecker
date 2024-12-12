@@ -45,6 +45,20 @@ public class RestServiceController {
             scenario.accept(keywordCountVisitor);
 
             return scenarioProccesor.Parsing(keywordCountVisitor);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return e.getMessage();
+        }
+    }
+
+    @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
+    public String getStepCount(@RequestBody String str) throws Exception {
+        try {
+            StepCountVisitor stepCountVisitor = new StepCountVisitor();
+            Scenario scenario = scenarioProccesor.Proccesing(str);
+            scenario.accept(stepCountVisitor);
+
+            return scenarioProccesor.Parsing(stepCountVisitor);
         }
         catch (Exception e) {
             logger.error(e.getMessage());
