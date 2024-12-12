@@ -11,24 +11,24 @@ import pl.put.poznan.restservice.logic.*;
 public class RestServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(RestServiceController.class);
-
-    private final VisitScenarioVisitor visitScenarioVisitor;
     private final ScenarioProccesor scenarioProccesor;
-    private final NumberList numberList;
 
     @Autowired
-    public RestServiceController(VisitScenarioVisitor visitScenarioVisitor, ScenarioProccesor scenarioProccesor, NumberList numberList) {
-        this.visitScenarioVisitor = visitScenarioVisitor;
+    public RestServiceController(ScenarioProccesor scenarioProccesor) {
         this.scenarioProccesor = scenarioProccesor;
-        this.numberList = numberList;
+    }
+
+    @GetMapping()
+    public String showSite() {
+        return "Hello! This is just sample site so that it doesn't show error :D";
     }
 
     @RequestMapping(path ="/numberedStepList", method = RequestMethod.POST, produces = "application/json")
     public String getNumberedList(@RequestBody String str) throws Exception {
         try {
+            NumberListVisitor numberList = new NumberListVisitor();
             Scenario scenario = scenarioProccesor.Proccesing(str);
-            scenario.accept(visitScenarioVisitor);
-            numberList.accept(visitScenarioVisitor);
+            scenario.accept(numberList);
             return numberList.getNumberedSteps();
         }
         catch (Exception e) {
@@ -37,21 +37,35 @@ public class RestServiceController {
         }
     }
 
-    @RequestMapping(path = "/stepCount", method = RequestMethod.POST, produces = "application/json")
-    public String getStepCount(@RequestBody String str) throws Exception {
+    @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
+    public String getKeywordCount(@RequestBody String str) throws Exception {
         try {
-            StepCounterVisitor visitor = new StepCounterVisitor();
+            KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
             Scenario scenario = scenarioProccesor.Proccesing(str);
-            scenario.accept(visitor);
-            return "Total step count: " + visitor.getStepCount();
-        } catch (Exception e) {
+            scenario.accept(keywordCountVisitor);
+
+            return scenarioProccesor.Parsing(keywordCountVisitor);
+        }
+        catch (Exception e) {
             logger.error(e.getMessage());
             return e.getMessage();
         }
     }
 
+    @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
+    public String getStepCount(@RequestBody String str) throws Exception {
+        try {
+            StepCountVisitor stepCountVisitor = new StepCountVisitor();
+            Scenario scenario = scenarioProccesor.Proccesing(str);
+            scenario.accept(stepCountVisitor);
 
-
+            return scenarioProccesor.Parsing(stepCountVisitor);
+        }
+        catch (Exception e) {
+            logger.error(e.getMessage());
+            return e.getMessage();
+        }
+    }
 }
 
 
