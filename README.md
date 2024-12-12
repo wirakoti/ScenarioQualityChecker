@@ -1,5 +1,5 @@
 # ScenarioQualityChecker
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wirakoti/ScenarioQualityChecker/maven.yml?label=build)
+![example workflow](https://github.com/wirakoti/ScenarioQualityChecker/actions/workflows/maven.yml/badge.svg)
 
 ScenarioQualityChecker for IO lab
 
