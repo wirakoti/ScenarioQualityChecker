@@ -10,4 +10,9 @@ public class ScenarioProccesor {
 
         return mapper.readValue(json, Scenario.class);
     }
+
+    public <T> String Parsing(T object) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(object);
+    }
 }
