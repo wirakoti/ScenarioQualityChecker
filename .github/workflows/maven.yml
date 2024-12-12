@@ -24,7 +24,7 @@ jobs:
           name: javadoc
           path: target/site/apidocs
       - name: Create .jar file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
          name: ScenarioQualityCheckerApp
          path: target/ScenarioQualityCheckerApp.jar
