@@ -11,20 +11,17 @@ import pl.put.poznan.restservice.logic.*;
 public class RestServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(RestServiceController.class);
-
-    private final VisitScenarioVisitor visitScenarioVisitor;
     private final ScenarioProccesor scenarioProccesor;
 
     @Autowired
-    public RestServiceController(VisitScenarioVisitor visitScenarioVisitor, ScenarioProccesor scenarioProccesor, NumberList numberList) {
-        this.visitScenarioVisitor = visitScenarioVisitor;
+    public RestServiceController(ScenarioProccesor scenarioProccesor) {
         this.scenarioProccesor = scenarioProccesor;
     }
 
     @RequestMapping(path ="/numberedStepList", method = RequestMethod.POST, produces = "application/json")
     public String getNumberedList(@RequestBody String str) throws Exception {
         try {
-            NumberList numberList = new NumberList();
+            NumberListVisitor numberList = new NumberListVisitor();
             Scenario scenario = scenarioProccesor.Proccesing(str);
             scenario.accept(numberList);
             return numberList.getNumberedSteps();
