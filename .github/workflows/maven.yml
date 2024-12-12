@@ -16,11 +16,18 @@ jobs:
           cache: maven
       - name: Validate, build and run tests
         run: mvn clean package --batch-mode --update-snapshots verify
+      - name: Generate Javadoc
+        run: mvn javadoc:javadoc
+      - name: Upload Javadoc
+        uses: actions/upload-artifact@v3
+        with:
+          name: javadoc
+          path: target/site/apidocs
       - name: Create .jar file
         uses: actions/upload-artifact@v3
         with:
          name: ScenarioQualityCheckerApp
-         path: target/*.jar
+         path: target/ScenarioQualityCheckerApp.jar
   notify:
     needs: build
     if: failure()
