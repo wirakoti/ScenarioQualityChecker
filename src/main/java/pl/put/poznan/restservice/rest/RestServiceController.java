@@ -43,7 +43,8 @@ public class RestServiceController {
             KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
             Scenario scenario = scenarioProccesor.Proccesing(str);
             scenario.accept(keywordCountVisitor);
-            return "Keyword count: " + keywordCountVisitor.getKeywordCount();
+
+            return scenarioProccesor.Parsing(keywordCountVisitor);
         }
         catch (Exception e) {
             logger.error(e.getMessage());
