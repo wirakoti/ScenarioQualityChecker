@@ -21,12 +21,12 @@ Integruje się z różnymi systemami i interfejsami API w celu dostarczania szcz
 ## Narzędzia
 ### Użycie `curl`
 ```bash
-curl -X POST http://localhost:8080/RestService/numberedStepList -H "Content-Type: application/json" -d "@input.json"
+curl.exe -X POST http://localhost:8080/RestService/{exampleSubSite} -H "Content-Type: application/json" -d "@input.json"
 ```
 
 ### Użycie `Invoke-WebRequest `
 ```bash
-Invoke-WebRequest -Uri http://localhost:8080/RestService/numberedStepList -Method Post -ContentType "application/json" -InFile "input.json"
+Invoke-WebRequest -Uri http://localhost:8080/RestService/{exampleSubSite} -Method Post -ContentType "application/json" -InFile "input.json"
 ```
 
 
