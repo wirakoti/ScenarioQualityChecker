@@ -4,7 +4,7 @@ pl\put\poznan\restservice\logic\IfStep.class
 pl\put\poznan\restservice\app\RestServiceApplication.class
 pl\put\poznan\restservice\logic\Scenario.class
 pl\put\poznan\restservice\logic\StepCountVisitor.class
-pl\put\poznan\restservice\logic\ScenarioProccesor.class
+pl\put\poznan\restservice\logic\ScenarioProcessor.class
 pl\put\poznan\restservice\rest\RestServiceController.class
 pl\put\poznan\restservice\logic\ForEachStep.class
 pl\put\poznan\restservice\logic\Step.class

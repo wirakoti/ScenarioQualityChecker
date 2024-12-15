@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ScenarioProccesor {
+public class ScenarioProcessor {
     public Scenario Proccesing(String json) throws Exception{
         ObjectMapper mapper = new ObjectMapper();
 
