@@ -32,32 +32,15 @@ jobs:
     needs: build
     if: failure()
     runs-on: ubuntu-latest
-
     steps:
-    - name: Extract error summary
-      id: read-log
-      run: |
-        if grep -q 'BUILD FAILURE' build.log; then
-          echo "FAILED_STEP=Validate, build and run tests" >> $GITHUB_ENV
-        else
-          echo "FAILED_STEP=Unknown step failed" >> $GITHUB_ENV
-        fi
-
-    - name: Attach Build Log
-      run: echo "See the attached build.log for details." >> email_body.txt
-
-    - name: Send email notification
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 465
-        username: ${{ secrets.MAIL_USERNAME }}
-        password: ${{ secrets.MAIL_PASSWORD }}
-        subject: "Github Actions - Build Failure!"
-        body: |
-          Build of ${{ github.repository }} FAILED!
-          Failed Step: ${{ env.FAILED_STEP }}
-          See attached build log for details.
-        to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
-        from: IOLab Project
-        attachments: build.log
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3 
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Github Actions - build failure!
+          body: Build of ${{github.repository}} failed! Please check the logs for the detailed info.
+          to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
+          from: IO Lab Project Team
