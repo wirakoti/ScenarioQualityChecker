@@ -81,19 +81,40 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return keyword count in JSON format.
      */
-    @RequestMapping(path = "/keywordCounter", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
     public String getKeywordCount(@RequestBody String str) throws Exception {
         try {
             KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
             Scenario scenario = scenarioProcessor.Proccesing(str);
             scenario.accept(keywordCountVisitor);
-
             return scenarioProcessor.Parsing(keywordCountVisitor);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return e.getMessage();
         }
     }
+
+    /**
+     * POST endpoint for counting steps in a scenario.
+     *
+     * @param str JSON input of the scenario.
+     * @return steps count in JSON format.
+     */
+    @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
+    public String getStepCount(@RequestBody String str) throws Exception {
+        try {
+            StepCountVisitor stepCountVisitor = new StepCountVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            scenario.accept(stepCountVisitor);
+
+            return scenarioProcessor.Parsing(stepCountVisitor);
+        }
+        catch (Exception e) {
+            logger.error(e.getMessage());
+            return e.getMessage();
+        }
+    }
+
 }
 
 
