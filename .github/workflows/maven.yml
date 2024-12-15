@@ -15,7 +15,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Validate, build and run tests
-        run: mvn clean package --batch-mode --update-snapshots verify
+        run: mvn clean package --batch-mode --update-snapshots verify > build.log 2>&1
       - name: Generate Javadoc
         run: mvn javadoc:javadoc
       - name: Upload Javadoc
@@ -32,23 +32,15 @@ jobs:
     needs: build
     if: failure()
     runs-on: ubuntu-latest
-
     steps:
-      - name: Extract error summary
-        id: read-log
-        run: |
-          echo "ERROR_SUMMARY=$(grep -i 'ERROR' build.log | tail -n 1 | sed 's/"/'\\"'/g')" >> $GITHUB_ENV
-
       - name: Send email notification
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v3 
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "Github Actions - Build Failure!"
-          body: "Build of ${{github.repository}} FAILED!\n\nError Summary: ${{ env.ERROR_SUMMARY }}"
+          subject: Github Actions - build failure!
+          body: Build of ${{github.repository}} failed! Please check the logs for the detailed info.
           to: wiktoria.bialasik05@gmail.com, chojniakkatarzyna@protonmail.com, mati.czechow@gmail.com
-          from: Luke Skywalker
-          
-          
+          from: IO Lab Project Team

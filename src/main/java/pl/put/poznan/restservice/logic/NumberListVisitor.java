@@ -1,9 +1,12 @@
 package pl.put.poznan.restservice.logic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * NumberListVisitor - Class Description
@@ -18,7 +21,7 @@ import java.util.List;
  * </ul>
  *
  * @author CzechowskiMateusz
- * @version 0.1
+ * @version 1.0
  */
 
 @Service
@@ -31,12 +34,42 @@ public class NumberListVisitor implements ScenarioVisitor {
     private String currentPrefix = "";
 
     /**
-     * Gets Scenario
+     * Gets Scenario in plain text
      *
      * @return numbered script in txt format
      */
     public String getNumberedSteps() {
         return String.join("\n", numberedSteps);
+    }
+
+    /**
+     * Gets Scenario in JSON HashMap
+     *
+     * @return numbered script in txt format [JSON alike]
+     */
+    public String getJsonSteps() {
+        try {
+            HashMap<Object, Object> res = new HashMap<>();
+            List<HashMap<Object, Object>> steps = new ArrayList<>();
+
+            // Generating object for JSON
+            for (String step : numberedSteps) {
+                if (step.startsWith("Tytuł: ") || step.startsWith("Aktorzy: ") || step.startsWith("Aktorzy systemowi: ") || step.isBlank()) {
+                    continue;
+                }
+
+                HashMap<Object, Object> stepJson = new HashMap<>();
+                stepJson.put("step", step);
+                steps.add(stepJson);
+            }
+            res.put("scenario", steps);
+
+            // Mapping to return string looking like json
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
+        } catch (Exception e) {
+            throw new RuntimeException("Error while generating JSON", e);
+        }
     }
 
     /**
