@@ -11,9 +11,6 @@ Integruje się z różnymi systemami i interfejsami API w celu dostarczania szcz
 - **Mateusz Czechowski** (Proxy Product Owner)
 - **Paula Skrzypek**
 
-## Workflow
-Narzędzie zapewnia zautomatyzowany workflow, który integruje się z backlogiem produktu oraz baclkogiem sprintu.
-
 ## Linki
 [Link](https://docs.google.com/spreadsheets/d/1BzeZqAxVHTAzYl7ZYjqGWg1dS7qwtC_Q/edit?usp=sharing&ouid=118269913899199224091&rtpof=true&sd=true) do arkusza z ProductBacklog/SpringBacklog
 
