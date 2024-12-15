@@ -20,6 +20,7 @@ public class RestServiceController {
     private static final Logger logger = LoggerFactory.getLogger(RestServiceController.class);
     private final ScenarioProcessor scenarioProcessor;
 
+
     /**
      * Constructor to initialize controller.
      * @param scenarioProcessor the processor to handle scenario logic
@@ -83,13 +84,25 @@ public class RestServiceController {
      */
     @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
     public String getKeywordCount(@RequestBody String str) throws Exception {
+        logger.info("Received request to get Keyword Count (KC)");
+        logger.debug("KC: Request body: {}", str);
         try {
+            logger.info("KC: Starting scenario processing");
             KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
             Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("KC: Scenario processed: {}", scenario);
+
+            logger.info("KC: Starting visitor acceptance on a scenario");
             scenario.accept(keywordCountVisitor);
-            return scenarioProcessor.Parsing(keywordCountVisitor);
+            logger.debug("KC: Visitor accepted: {}", keywordCountVisitor);
+
+            logger.info("KC: Starting parsing");
+            String result = scenarioProcessor.Parsing(keywordCountVisitor);
+            logger.debug("KC: Parsing result: {}", result);
+
+            return result;
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("KC: An error occurred while processing", e);
             return e.getMessage();
         }
     }
@@ -102,15 +115,27 @@ public class RestServiceController {
      */
     @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
     public String getStepCount(@RequestBody String str) throws Exception {
+        logger.info("Received request to get Step Count (SC)");
+        logger.debug("SC: Request body: {}", str);
         try {
+            logger.info("SC: Starting scenario processing");
             StepCountVisitor stepCountVisitor = new StepCountVisitor();
             Scenario scenario = scenarioProcessor.Proccesing(str);
-            scenario.accept(stepCountVisitor);
+            logger.debug("SC: Scenario processed: {}", scenario);
 
-            return scenarioProcessor.Parsing(stepCountVisitor);
+            logger.info("SC: Starting visitor acceptance on a scenario");
+            scenario.accept(stepCountVisitor);
+            logger.debug("SC: Visitor accepted: {}", stepCountVisitor);
+
+            logger.info("SC: Starting parsing");
+            String result = scenarioProcessor.Parsing(stepCountVisitor);
+            logger.debug("SC: Parsing result: {}", result);
+
+            return result;
+
         }
         catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("KC: An error occurred while processing", e);
             return e.getMessage();
         }
     }
