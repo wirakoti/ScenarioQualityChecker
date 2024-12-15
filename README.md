@@ -16,7 +16,7 @@ Integruje się z różnymi systemami i interfejsami API w celu dostarczania szcz
 
 [Link](https://docs.google.com/spreadsheets/d/e/2PACX-1vTn6j3M8pmGEzrsQk8mXse7lVHUdhYWkfxbkQiYI23rBtwM4N3bWw0qtupW-gesfCkcYasnZ-eEXl-F/pubhtml) do zasad punktowania sprintów
 
-[Link](https://github.com/wirakoti/ScenarioQualityChecker/blob/main/UML.Model.mdj) do diagramu UML
+[Link](https://github.com/wirakoti/ScenarioQualityChecker/blob/main/UML.png) do diagramu UML
 
 ## Narzędzia
 ### Użycie `curl`
