@@ -87,7 +87,7 @@ public class RestServiceController {
             KeywordCountVisitor keywordCountVisitor = new KeywordCountVisitor();
             Scenario scenario = scenarioProcessor.Proccesing(str);
             scenario.accept(keywordCountVisitor);
-            return scenarioProccesor.Parsing(keywordCountVisitor);
+            return scenarioProcessor.Parsing(keywordCountVisitor);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return e.getMessage();
@@ -104,10 +104,10 @@ public class RestServiceController {
     public String getStepCount(@RequestBody String str) throws Exception {
         try {
             StepCountVisitor stepCountVisitor = new StepCountVisitor();
-            Scenario scenario = scenarioProccesor.Proccesing(str);
+            Scenario scenario = scenarioProcessor.Proccesing(str);
             scenario.accept(stepCountVisitor);
 
-            return scenarioProccesor.Parsing(stepCountVisitor);
+            return scenarioProcessor.Parsing(stepCountVisitor);
         }
         catch (Exception e) {
             logger.error(e.getMessage());
