@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.restservice.logic.*;
 
+import java.util.Set;
+
 /**
  * RestServiceController - Class Description
  * *
@@ -139,6 +141,40 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+
+    @RequestMapping(path = "/validateScenario", method = RequestMethod.POST, produces = "application/json")
+    public String validateScenario(@RequestBody String str) throws Exception {
+        logger.info("Received request to validate scenario (VS)");
+        logger.debug("VS: Request body: {}", str);
+        try {
+            logger.info("VS: Starting scenario processing");
+            ScenarioValidationVisitor validationVisitor = new ScenarioValidationVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("VS: Scenario processed: {}", scenario);
+
+            logger.info("VS: Starting visitor acceptance on the scenario");
+            scenario.accept(validationVisitor);
+            logger.debug("VS: Visitor accepted: {}", validationVisitor);
+
+            logger.info("VS: Starting validation");
+            Set<String> validationErrors = validationVisitor.getValidationErrors();
+
+            String result;
+            if (validationErrors.isEmpty()) {
+                result = "Scenario is valid!";
+                logger.debug("VS: Validation passed. Result: {}", result);
+            } else {
+                result = "Validation errors found: " + validationErrors;
+                logger.debug("VS: Validation failed. Errors: {}", validationErrors);
+            }
+
+            return result;
+        } catch (Exception e) {
+            logger.error("VS: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
+
 
 }
 
