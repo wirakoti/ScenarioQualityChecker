@@ -140,6 +140,40 @@ public class RestServiceController {
         }
     }
 
+
+    /**
+     * POST endpoint for counting steps in a scenario.
+     *
+     * @param str JSON input of the scenario.
+     * @return steps count in JSON format.
+     */
+    @RequestMapping(path ="/nonActorSteps", method = RequestMethod.POST, produces = "application/json")
+    public String getNoActorSteps(@RequestBody String str) throws Exception {
+        logger.info("Received request to get non-Actor steps. (NAS)");
+        logger.debug("NAS: Request body: {}", str);
+
+        try {
+            logger.info("NAS: Starting scenario processing");
+            NoActorStepVisitor nonActorStepVisitor = new NoActorStepVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("NAS: Scenario processed: {}", scenario);
+
+            logger.info("NAS: Starting visitor acceptance on a scenario");
+            scenario.accept(nonActorStepVisitor);
+            logger.debug("NAS: Visitor accepted: {}", nonActorStepVisitor);
+
+            logger.info("NAS: Starting parsing");
+            String result = scenarioProcessor.Parsing(nonActorStepVisitor);
+            logger.debug("NAS: Parsing result: {}", result);
+
+            return result;
+
+        }
+        catch (Exception e) {
+            logger.error("NAS: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
 }
 
 
