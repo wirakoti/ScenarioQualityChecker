@@ -174,6 +174,40 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+
+    /**
+     * POST endpoint for searching potential actors.
+     *
+     * @param str JSON input of the scenario.
+     * @return list of actors in JSON format.
+     */
+    @RequestMapping(path ="/potentialActors", method = RequestMethod.POST, produces = "application/json")
+    public String getActors(@RequestBody String str) throws Exception {
+        logger.info("Received request to get potential Actors. (PA)");
+        logger.debug("PA: Request body: {}", str);
+
+        try {
+            logger.info("PA: Starting scenario processing");
+            ValidActorVisitor validActorVisitor = new ValidActorVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("PA: Scenario processed: {}", scenario);
+
+            logger.info("PA: Starting visitor acceptance on a scenario");
+            scenario.accept(validActorVisitor);
+            logger.debug("PA: Visitor accepted: {}", validActorVisitor);
+
+            logger.info("PA: Starting parsing");
+            String result = scenarioProcessor.Parsing(validActorVisitor);
+            logger.debug("PA: Parsing result: {}", result);
+
+            return result;
+
+        }
+        catch (Exception e) {
+            logger.error("NAS: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
 }
 
 
