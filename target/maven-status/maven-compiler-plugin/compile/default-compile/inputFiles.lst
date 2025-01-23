@@ -1,12 +1,14 @@
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\app\RestServiceApplication.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ForEachStep.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\IfStep.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\KeywordCountVisitor.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\NumberListVisitor.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Scenario.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioElement.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioProcessor.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioVisitor.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Step.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\StepCountVisitor.java
-C:\Users\wikto\OneDrive\Dokumenty\studia-LAPTOP-0VHTTJU8\V semestr INF\iolab\ScenarioQualityChecker\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\rest\RestServiceController.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\app\RestServiceApplication.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ForEachStep.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\IfStep.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\KeywordCountVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\NoActorStepVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\NumberListVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Scenario.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioElement.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioProcessor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ScenarioVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\Step.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\StepCountVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\logic\ValidActorVisitor.java
+C:\Users\Mateusz\Desktop\ScenarioQualityChecker\src\main\java\pl\put\poznan\restservice\rest\RestServiceController.java
