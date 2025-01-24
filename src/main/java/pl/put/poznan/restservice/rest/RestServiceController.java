@@ -24,6 +24,7 @@ public class RestServiceController {
 
     /**
      * Constructor to initialize controller.
+     *
      * @param scenarioProcessor the processor to handle scenario logic
      */
     @Autowired
@@ -34,6 +35,7 @@ public class RestServiceController {
     /**
      * Default GET endpoint to show a welcome message.
      * This endpoint ensures that the basic page is running.
+     *
      * @return a welcome string
      */
     @GetMapping()
@@ -83,7 +85,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return keyword count in JSON format.
      */
-    @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/keywordCount", method = RequestMethod.POST, produces = "application/json")
     public String getKeywordCount(@RequestBody String str) throws Exception {
         logger.info("Received request to get Keyword Count (KC)");
         logger.debug("KC: Request body: {}", str);
@@ -114,7 +116,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return steps count in JSON format.
      */
-    @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/stepCount", method = RequestMethod.POST, produces = "application/json")
     public String getStepCount(@RequestBody String str) throws Exception {
         logger.info("Received request to get Step Count (SC)");
         logger.debug("SC: Request body: {}", str);
@@ -134,8 +136,7 @@ public class RestServiceController {
 
             return result;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("KC: An error occurred while processing", e);
             return e.getMessage();
         }
@@ -175,14 +176,13 @@ public class RestServiceController {
     }
 
 
-
     /**
      * POST endpoint for counting steps in a scenario.
      *
      * @param str JSON input of the scenario.
      * @return steps count in JSON format.
      */
-    @RequestMapping(path ="/nonActorSteps", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/nonActorSteps", method = RequestMethod.POST, produces = "application/json")
     public String getNoActorSteps(@RequestBody String str) throws Exception {
         logger.info("Received request to get non-Actor steps. (NAS)");
         logger.debug("NAS: Request body: {}", str);
@@ -203,8 +203,7 @@ public class RestServiceController {
 
             return result;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("NAS: An error occurred while processing", e);
             return e.getMessage();
         }
@@ -216,7 +215,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return list of actors in JSON format.
      */
-    @RequestMapping(path ="/potentialActors", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/potentialActors", method = RequestMethod.POST, produces = "application/json")
     public String getActors(@RequestBody String str) throws Exception {
         logger.info("Received request to get potential Actors. (PA)");
         logger.debug("PA: Request body: {}", str);
@@ -237,8 +236,7 @@ public class RestServiceController {
 
             return result;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("NAS: An error occurred while processing", e);
             return e.getMessage();
         }
