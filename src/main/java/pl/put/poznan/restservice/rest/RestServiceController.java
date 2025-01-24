@@ -174,8 +174,7 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
-
-
+  
     /**
      * POST endpoint for counting steps in a scenario.
      *
@@ -236,7 +235,8 @@ public class RestServiceController {
 
             return result;
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             logger.error("NAS: An error occurred while processing", e);
             return e.getMessage();
         }
