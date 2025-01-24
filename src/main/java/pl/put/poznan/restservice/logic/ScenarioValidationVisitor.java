@@ -33,6 +33,8 @@ public class ScenarioValidationVisitor implements ScenarioVisitor {
         return validationErrors;
     }
 
+    public int getValidationErrorsCount() { return validationErrors.size(); }
+
     /**
      * Validates the scenario by checking for the presence of steps, actors, and system actors.
      * This method processes each step in the scenario and ensures that each defined actor and system actor is used.
