@@ -139,8 +139,40 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+  
+  /**
+     * POST endpoint for checking duplicate steps in a scenario.
+     *
+     * @param str JSON input of the scenario.
+     * @return steps count in JSON format.
+     */
 
+    @RequestMapping(path = "/duplicateStepCheck", method = RequestMethod.POST, produces = "application/json")
+    public String checkForDuplicates(@RequestBody String str) throws Exception {
+        logger.info("Received request to check for duplicate steps");
+        logger.debug("DSC: Request body: {}", str);
 
+        try {
+            logger.info("DSC: Starting scenario processing");
+            DuplicateStepCheckVisitor duplicateStepVisitor = new DuplicateStepCheckVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("DSC: Scenario processed: {}", scenario);
+
+            logger.info("DSC: Starting visitor acceptance on the scenario");
+            scenario.accept(duplicateStepVisitor);
+            logger.debug("DSC: Visitor accepted: {}", duplicateStepVisitor);
+
+            logger.info("DSC: Retrieving duplicate steps");
+            String duplicateSteps = duplicateStepVisitor.getDuplicateSteps();
+            logger.debug("DSC: {}", duplicateSteps);
+
+            return duplicateSteps;
+        } catch (Exception e) {
+            logger.error("DSC: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
+  
     /**
      * POST endpoint for counting steps in a scenario.
      *
@@ -174,6 +206,7 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+
 
     /**
      * POST endpoint for searching potential actors.
