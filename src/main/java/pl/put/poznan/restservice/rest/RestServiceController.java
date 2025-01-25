@@ -215,11 +215,15 @@ public class RestServiceController {
         logger.debug("QC: Request body: {}", str);
 
         try {
+            logger.info("QC: Starting scenario processing");
             Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("QC: Scenario processed: {}", scenario);
 
             QualityChecker qualityChecker = new QualityChecker(scenario);
 
+            logger.info("QC: Starting parsing");
             String result = scenarioProcessor.Parsing(qualityChecker);
+            logger.debug("QC: Parsing result: {}", result);
 
             return result;
         }
