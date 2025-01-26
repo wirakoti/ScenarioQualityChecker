@@ -19,7 +19,7 @@ public class ValidActorVisitor implements ScenarioVisitor {
 
     // Class Params
     private final List<String> potentialActors = new ArrayList<>();
-    private List<String> validActors = new ArrayList<>();
+    public List<String> validActors = new ArrayList<>();
 
     /**
      * Gets final list of potential actors.
@@ -34,7 +34,7 @@ public class ValidActorVisitor implements ScenarioVisitor {
      *
      * @return true if there is an  actor in list
      */
-    private boolean isActor(String step){
+    public boolean isActor(String step){
         if(step == null || step.isBlank()) return false;
 
         String potentialActor = step.split(" ")[0];
