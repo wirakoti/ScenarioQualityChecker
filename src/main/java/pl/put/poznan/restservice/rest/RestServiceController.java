@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.restservice.logic.*;
 
+import java.util.Set;
 /**
  * RestServiceController - Class Description
  * *
@@ -23,6 +24,7 @@ public class RestServiceController {
 
     /**
      * Constructor to initialize controller.
+     *
      * @param scenarioProcessor the processor to handle scenario logic
      */
     @Autowired
@@ -33,6 +35,7 @@ public class RestServiceController {
     /**
      * Default GET endpoint to show a welcome message.
      * This endpoint ensures that the basic page is running.
+     *
      * @return a welcome string
      */
     @GetMapping()
@@ -82,7 +85,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return keyword count in JSON format.
      */
-    @RequestMapping(path ="/keywordCount", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/keywordCount", method = RequestMethod.POST, produces = "application/json")
     public String getKeywordCount(@RequestBody String str) throws Exception {
         logger.info("Received request to get Keyword Count (KC)");
         logger.debug("KC: Request body: {}", str);
@@ -113,7 +116,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return steps count in JSON format.
      */
-    @RequestMapping(path ="/stepCount", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/stepCount", method = RequestMethod.POST, produces = "application/json")
     public String getStepCount(@RequestBody String str) throws Exception {
         logger.info("Received request to get Step Count (SC)");
         logger.debug("SC: Request body: {}", str);
@@ -133,21 +136,91 @@ public class RestServiceController {
 
             return result;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("KC: An error occurred while processing", e);
             return e.getMessage();
         }
     }
+  
+  /**
+     * POST endpoint for checking duplicate steps in a scenario.
+     *
+     * @param str JSON input of the scenario.
+     * @return list of duplicate steps count in JSON format.
+     */
+    @RequestMapping(path = "/duplicateStepCheck", method = RequestMethod.POST, produces = "application/json")
+    public String checkForDuplicates(@RequestBody String str) throws Exception {
+        logger.info("Received request to check for duplicate steps");
+        logger.debug("DSC: Request body: {}", str);
 
+        try {
+            logger.info("DSC: Starting scenario processing");
+            DuplicateStepCheckVisitor duplicateStepVisitor = new DuplicateStepCheckVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("DSC: Scenario processed: {}", scenario);
 
+            logger.info("DSC: Starting visitor acceptance on the scenario");
+            scenario.accept(duplicateStepVisitor);
+            logger.debug("DSC: Visitor accepted: {}", duplicateStepVisitor);
+          
+            logger.info("DSC: Retrieving duplicate steps");
+            String duplicateSteps = duplicateStepVisitor.getDuplicateSteps();
+            logger.debug("DSC: {}", duplicateSteps);
+
+            return duplicateSteps;
+        } catch (Exception e) {
+            logger.error("DSC: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
+
+  /**
+     * POST endpoint for checking if scenario is a valid one.
+     *
+     * @param str JSON input of the scenario.
+     * @return possible errors in scenario in JSON format.
+     */
+    @RequestMapping(path = "/validateScenario", method = RequestMethod.POST, produces = "application/json")
+    public String validateScenario(@RequestBody String str) throws Exception {
+        logger.info("Received request to validate scenario (VS)");
+        logger.debug("VS: Request body: {}", str);
+        try {
+            logger.info("VS: Starting scenario processing");
+            ScenarioValidationVisitor validationVisitor = new ScenarioValidationVisitor();
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("VS: Scenario processed: {}", scenario);
+
+            logger.info("VS: Starting visitor acceptance on the scenario");
+            scenario.accept(validationVisitor);
+            logger.debug("VS: Visitor accepted: {}", validationVisitor);
+
+            logger.info("VS: Starting validation");
+            Set<String> validationErrors = validationVisitor.getValidationErrors();
+
+            String result;
+            if (validationErrors.isEmpty()) {
+                result = "Scenario is valid!";
+                logger.debug("VS: Validation passed. Result: {}", result);
+            } else {
+                result = "Validation errors found: " + validationErrors;
+                logger.debug("VS: Validation failed. Errors: {}", validationErrors);
+            }
+
+            return result;
+        } catch (Exception e) {
+            logger.error("VS: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
+
+  
     /**
      * POST endpoint for counting steps in a scenario.
      *
      * @param str JSON input of the scenario.
      * @return steps count in JSON format.
      */
-    @RequestMapping(path ="/nonActorSteps", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/nonActorSteps", method = RequestMethod.POST, produces = "application/json")
     public String getNoActorSteps(@RequestBody String str) throws Exception {
         logger.info("Received request to get non-Actor steps. (NAS)");
         logger.debug("NAS: Request body: {}", str);
@@ -168,12 +241,12 @@ public class RestServiceController {
 
             return result;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("NAS: An error occurred while processing", e);
             return e.getMessage();
         }
     }
+
 
     /**
      * POST endpoint for searching potential actors.
@@ -181,7 +254,7 @@ public class RestServiceController {
      * @param str JSON input of the scenario.
      * @return list of actors in JSON format.
      */
-    @RequestMapping(path ="/potentialActors", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path = "/potentialActors", method = RequestMethod.POST, produces = "application/json")
     public String getActors(@RequestBody String str) throws Exception {
         logger.info("Received request to get potential Actors. (PA)");
         logger.debug("PA: Request body: {}", str);
@@ -233,5 +306,3 @@ public class RestServiceController {
         }
     }
 }
-
-
