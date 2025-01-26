@@ -281,4 +281,28 @@ public class RestServiceController {
             return e.getMessage();
         }
     }
+
+    @RequestMapping(path = "/checkQuality", method = RequestMethod.POST, produces = "application/json")
+    public String getQualityCheck(@RequestBody String str) throws Exception {
+        logger.info("Received request to get Quality Check (QC)");
+        logger.debug("QC: Request body: {}", str);
+
+        try {
+            logger.info("QC: Starting scenario processing");
+            Scenario scenario = scenarioProcessor.Proccesing(str);
+            logger.debug("QC: Scenario processed: {}", scenario);
+
+            QualityChecker qualityChecker = new QualityChecker(scenario);
+
+            logger.info("QC: Starting parsing");
+            String result = scenarioProcessor.Parsing(qualityChecker);
+            logger.debug("QC: Parsing result: {}", result);
+
+            return result;
+        }
+        catch (Exception e) {
+            logger.error("QC: An error occurred while processing", e);
+            return e.getMessage();
+        }
+    }
 }
