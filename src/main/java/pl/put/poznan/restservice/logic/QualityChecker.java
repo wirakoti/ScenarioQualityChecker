@@ -24,8 +24,8 @@ public class QualityChecker {
             qualityResult /= (Math.log(stepCount) - ifCount);
         }
 
-        if (keywordCount < 2) {
-            qualityResult /= 0.5;
+        if (keywordCount < 1) {
+            qualityResult *= 0.5;
         }
 
         float noActorStepCount = getNoActorStepCount();
