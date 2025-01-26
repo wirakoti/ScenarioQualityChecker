@@ -20,9 +20,9 @@ public class ScenarioValidationVisitor implements ScenarioVisitor {
 
     private final Set<String> validationErrors = new HashSet<>();
     private final Set<String> actorsUsed = new HashSet<>();
-    private final Set<String> systemActorsUsed = new HashSet<>();
+    private boolean systemActorUsed = false;
     private String[] scenarioActors = new String[0];
-    private String[] systemActors = new String[0];
+    private String systemActor = "";
 
     /**
      * Returns the validation errors encountered during scenario validation.
@@ -44,7 +44,7 @@ public class ScenarioValidationVisitor implements ScenarioVisitor {
     @Override
     public void visit(Scenario scenario) {
         scenarioActors = scenario.actors();
-        systemActors = scenario.systemActors();
+        systemActor = scenario.systemActors();
         if (scenario.scenarios() == null || scenario.scenarios().length == 0) {
             validationErrors.add("The scenario has no steps.");
         }
@@ -59,10 +59,8 @@ public class ScenarioValidationVisitor implements ScenarioVisitor {
             }
         }
 
-        for (String systemActor : systemActors) {
-            if (!systemActorsUsed.contains(systemActor)) {
-                validationErrors.add("System actor not used in the scenario: " + systemActor);
-            }
+        if (systemActor != null && !systemActor.isBlank() && !systemActorUsed) {
+            validationErrors.add("System actor not used in the scenario: " + systemActor);
         }
     }
 
@@ -82,10 +80,8 @@ public class ScenarioValidationVisitor implements ScenarioVisitor {
                     actorsUsed.add(actor);
                 }
             }
-            for (String systemActor : systemActors) {
-                if (step.step().contains(systemActor)) {
-                    systemActorsUsed.add(systemActor);
-                }
+            if (systemActor != null && step.step().contains(systemActor)) {
+                systemActorUsed = true;
             }
         } else if (step.ifStep() == null && step.forEachStep() == null) {
             validationErrors.add("A step is empty or not described properly.");
